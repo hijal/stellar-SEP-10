@@ -73,7 +73,7 @@ const getToken = (account, tx, memo) => {
   const iss = `${config.HOME_DOMAIN}/auth`;
   const iat = Date.now();
   const exp = iat + 10 * 60000; // 10 minutes
-  const sub = memo ? `${account}:${memo}` : account;
+  const sub = account;
   const jti = tx.hash().toString('hex');
   const token = jwt.sign(
     {
