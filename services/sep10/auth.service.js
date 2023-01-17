@@ -8,7 +8,7 @@ const keypair = Keypair.fromSecret(config.SINGING_SECRET_KEY);
 const getChallenge = (
   account,
   homeDomain = new URL(config.HOME_DOMAIN).host,
-  webAuthDomain = new URL(config.HOME_DOMAIN).host
+  webAuthDomain = new URL(config.WEB_DOMAIN).host
 ) => {
   // TODO: handle client domain and move timeout and memoId to controller
 
@@ -39,7 +39,7 @@ const verifyChallenge = async (transaction) => {
     config.SINGING_PUBLIC_KEY,
     config.STELLAR_NETWORK,
     config.HOME_DOMAIN,
-    config.HOME_DOMAIN
+    config.WEB_DOMAIN
   );
   try {
     const account = await server.loadAccount(clientAccountID);
@@ -51,7 +51,7 @@ const verifyChallenge = async (transaction) => {
       account.thresholds.med_threshold,
       account.signers,
       config.HOME_DOMAIN,
-      config.HOME_DOMAIN
+      config.WEB_DOMAIN
     );
   } catch (err) {
     if (err.name !== 'NotFoundError') {
@@ -63,7 +63,7 @@ const verifyChallenge = async (transaction) => {
       config.STELLAR_NETWORK,
       [clientAccountID],
       config.HOME_DOMAIN,
-      config.HOME_DOMAIN
+      config.WEB_DOMAIN
     );
   }
   return { clientAccountID, tx, memo };
