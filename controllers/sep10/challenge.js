@@ -1,5 +1,4 @@
 const { getChallenge } = require('../../services/sep10/auth.service');
-const sign = require('../../user/sign');
 
 const challenge = (req, res, next) => {
   try {
