@@ -5,7 +5,7 @@ const {
 
 const token = async (req, res, next) => {
   try {
-    const { transaction, network_passphrase } = req.body;
+    const { transaction } = req.body;
     if (!transaction) {
       return res.status(400).json({
         error: 'Required fields is missing'
