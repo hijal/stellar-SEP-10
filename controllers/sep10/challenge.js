@@ -15,12 +15,6 @@ const challenge = (req, res, next) => {
 
     const tx = getChallenge(account, homeDomain, webAuthDomain);
 
-    // TODO: Must remove from here
-    // const userSign = sign(tx.transaction, tx.network_passphrase);
-    // res.status(200).json({
-    //   transaction: userSign.toEnvelope().toXDR('base64'),
-    //   network_passphrase: tx.network_passphrase
-    // });
     res.status(200).json({
       transaction: tx.transaction,
       network_passphrase: tx.network_passphrase
