@@ -7,8 +7,8 @@ const keypair = Keypair.fromSecret(config.SINGING_SECRET_KEY);
 
 const getChallenge = (
   account,
-  homeDomain = config.HOME_DOMAIN,
-  webAuthDomain = config.HOME_DOMAIN
+  homeDomain = new URL(config.HOME_DOMAIN).host,
+  webAuthDomain = new URL(config.HOME_DOMAIN).host
 ) => {
   // TODO: handle client domain and move timeout and memoId to controller
 
