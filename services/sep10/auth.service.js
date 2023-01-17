@@ -38,8 +38,8 @@ const verifyChallenge = async (transaction) => {
     transaction,
     config.SINGING_PUBLIC_KEY,
     config.STELLAR_NETWORK,
-    config.HOME_DOMAIN,
-    config.WEB_DOMAIN
+    new URL(config.HOME_DOMAIN).host,
+    new URL(config.WEB_DOMAIN).host
   );
   try {
     const account = await server.loadAccount(clientAccountID);
@@ -50,8 +50,8 @@ const verifyChallenge = async (transaction) => {
       config.STELLAR_NETWORK,
       account.thresholds.med_threshold,
       account.signers,
-      config.HOME_DOMAIN,
-      config.WEB_DOMAIN
+      new URL(config.HOME_DOMAIN).host,
+      new URL(config.WEB_DOMAIN).host
     );
   } catch (err) {
     if (err.name !== 'NotFoundError') {
@@ -62,8 +62,8 @@ const verifyChallenge = async (transaction) => {
       config.SINGING_PUBLIC_KEY,
       config.STELLAR_NETWORK,
       [clientAccountID],
-      config.HOME_DOMAIN,
-      config.WEB_DOMAIN
+      new URL(config.HOME_DOMAIN).host,
+      new URL(config.WEB_DOMAIN).host
     );
   }
   return { clientAccountID, tx, memo };
